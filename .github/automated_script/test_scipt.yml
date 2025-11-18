@@ -1,0 +1,39 @@
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v3
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: "3.x"
+    - name: Install dependencies
+      run: |
+        pip install pytest
+    - name: Run Tests
+      run: |
+        pytest -v
+
+  deploy:
+    needs: test
+    runs-on: ubuntu-latest
+    if: success()
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v3
+    - name: Run Update Script
+      run: |
+        python update_devices.py
+
+    - name: Upload Updated Status
+      uses: actions/upload-artifact@v3
+      with:
+        name: device_status
+        path: device_status.json
+
