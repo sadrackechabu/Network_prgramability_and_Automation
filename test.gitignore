@@ -1,0 +1,7 @@
+__pycache__/
+*.pyc
+.vscode/
+*.env
+*.pem
+*.key
+device_status.json

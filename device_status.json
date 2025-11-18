@@ -1,0 +1,14 @@
+[
+    {
+        "name": "Router1",
+        "updated": true
+    },
+    {
+        "name": "Switch1",
+        "updated": true
+    },
+    {
+        "name": "Firewall1",
+        "updated": true
+    }
+]
